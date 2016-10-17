@@ -1,0 +1,6 @@
+-sname warp_zone
+
+-setcookie warp_zone_cookie
+
++K true
++A30

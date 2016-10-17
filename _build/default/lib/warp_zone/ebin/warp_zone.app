@@ -1,0 +1,11 @@
+{application,warp_zone,
+             [{description,"An OTP application"},
+              {vsn,"0.1.0"},
+              {registered,[]},
+              {mod,{warp_zone_app,[]}},
+              {applications,[kernel,stdlib]},
+              {env,[]},
+              {modules,[warp_zone_app,warp_zone_sup,wz_jsoninator]},
+              {maintainers,[]},
+              {licenses,[]},
+              {links,[]}]}.

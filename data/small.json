@@ -1,0 +1,15 @@
+{
+  "chef_server_fqdn": "chef-server.insights.co",
+  "entity_uuid": "0271e125-97dd-498a-b026-8448ee60aafe",
+  "expanded_run_list": {
+    "id": "_default",
+    "run_list": [
+      {
+      "type": "recipe",
+      "name": "insights-test::default",
+      "version": null,
+      "skipped": false
+    }
+    ]
+  }
+}
