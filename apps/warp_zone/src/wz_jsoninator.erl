@@ -1,6 +1,6 @@
 -module(wz_jsoninator).
 
--export([read_file/1, parse_json/1, time_parse/1, whitelist/2]).
+-export([read_file/1, parse_json/1, parse_mochijson/1, whitelist/2]).
 
 read_file(FileName) ->
     {ok, Device} = file:open(FileName, [read]),
@@ -14,13 +14,11 @@ get_all_lines(Device, Accum) ->
 
 parse_json(Filename) ->
     JsonFile = read_file(Filename),
-    Json = jiffy:decode(JsonFile),
-    Json.
+    jiffy:decode(JsonFile).
 
-time_parse(Filename) ->
-    {TimeMicroS, _Value} = timer:tc(fun() -> parse_json(Filename) end),
-    TimeMs = TimeMicroS/1000,
-    TimeMs.
+parse_mochijson(Filename) ->
+    JsonFile = read_file(Filename),
+    mochijson2:decode(JsonFile).
 
 % -type ej_path_element() :: atom() | binary() | string().
 % -type ej_path() :: list(ej_path_element()) | tuple(ej_path_element()).

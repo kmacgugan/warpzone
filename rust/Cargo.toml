@@ -1,0 +1,6 @@
+[package]
+name = "warp_zone"
+version = "0.1.0"
+authors = ["kmacgugan <kmacgugan@chef.io>"]
+
+[dependencies]

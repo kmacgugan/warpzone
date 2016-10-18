@@ -17,18 +17,24 @@ jiffy_should_decode_node_file_test() ->
     Value = wz_jsoninator_tests:timeParse("/Users/kmacgugan/chef/warp_zone3/data/small.json"),
     timeWhitelist(Value, [[<<"expanded_run_list">>, <<"run_list">>]]).
 
+jiffy_should_decode_large_files_test_() ->
+    {timeout, 36000, timeParse("/Users/kmacgugan/chef/warp_zone3/data/citylots.json")}.
 
-
-
-
-% jiffy_should_decode_large_files_test_() ->
-%     {timeout, 36000, ?_assertEqual(100, wz_jsoninator:time_parse("/Users/kmacgugan/chef/warp_zone3/data/citylots.json"))}.
+mochi_should_decode_large_files_test_() ->
+    {timeout, 36000, timeParseMochi("/Users/kmacgugan/chef/warp_zone3/data/citylots.json")}.
 
 timeParse(Filename) ->
     F = fun() -> wz_jsoninator:parse_json(Filename) end,
     {TimeMicroS, Value} = timer:tc(F),
     TimeMs = TimeMicroS/1000,
     ?debugFmt( "Time to parse: ~p~n", [TimeMs]),
+    Value.
+
+timeParseMochi(Filename) ->
+    F = fun() -> wz_jsoninator:parse_mochijson(Filename) end,
+    {TimeMicroS, Value} = timer:tc(F),
+    TimeMs = TimeMicroS/1000,
+    ?debugFmt( "Time to mochi parse: ~p~n", [TimeMs]),
     Value.
 
 timeWhitelist(Json, Whitelist) ->
